@@ -8,15 +8,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true # omogoča push
 
       - name: HTML validation
         run: |
+          sudo apt update
           sudo apt install -y tidy
           tidy -e index.html
 
-      - name: Deploy
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: .
+          force_orphan: true # če gh-pages obstaja, ga ponovno ustvari
