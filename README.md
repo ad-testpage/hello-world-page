@@ -1,4 +1,4 @@
-# Hello World – DevOps Demo
+# Hello World – DevOps Demo page
 
 ## Description
 Simple HTML page with automated CI/CD using GitHub Pages.
